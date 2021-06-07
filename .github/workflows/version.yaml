@@ -16,6 +16,8 @@ jobs:
     name: Print ref
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
       - name: Set build environment to test otherwise
         if: ${{ contains(github.ref, 'master') }}
         run: echo "BUILD_ENV=test"
