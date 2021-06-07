@@ -16,13 +16,9 @@ jobs:
     name: Print ref
     runs-on: ubuntu-latest
     steps:
-      - name: Set env
+      - name: print github ref
         # github tag will be like refs/tags/v0.1.0 :10 removes the first 10 characters
-        run: echo RELEASE_VERSION=$(echo ${GITHUB_REF:10}) >> $GITHUB_ENV
-
-      - uses: actions/checkout@v2
-      - name: publish multi-arch image
-        # podman cannot pull images with both tag and digest
-        # https://github.com/containers/buildah/issues/1407
-        # use docker to build images
-        run: echo ${RELEASE_VERSION}
+        run: echo ${github.ref}
+      - name: Set build environment to test otherwise
+        if: ${{ !contains(github.ref, 'master') }}
+        run: echo "BUILD_ENV=test"
