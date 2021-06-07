@@ -2,7 +2,7 @@
 name: print github ref
 # yamllint disable-line rule:truthy
 on:
-  push:
+  pull:
     # Sequence of patterns matched against refs/heads
     branches:
       # Push events on main branch
