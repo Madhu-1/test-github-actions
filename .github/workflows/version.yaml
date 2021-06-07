@@ -1,0 +1,23 @@
+---
+name: print github ref
+# yamllint disable-line rule:truthy
+on:
+  push:
+    # Sequence of patterns matched against refs/heads
+    branches:
+      # Push events on main branch
+      - master
+      # Push events to branches matching refs/heads/releasev*.*
+      - "release*"
+    tags:
+      - "v*"
+jobs:
+  push:
+    name: Print ref
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Set build environment to test otherwise
+        if: ${{ contains(github.ref, 'master') }}
+        run: echo "BUILD_ENV=test"
