@@ -16,9 +16,6 @@ jobs:
     name: Print ref
     runs-on: ubuntu-latest
     steps:
-      - name: print github ref
-        # github tag will be like refs/tags/v0.1.0 :10 removes the first 10 characters
-        run: echo ${github.ref}
       - name: Set build environment to test otherwise
-        if: ${{ !contains(github.ref, 'master') }}
+        if: ${{ contains(github.ref, 'refs/heads/master') && !contains(github.ref, 'refs/heads/ci/centos') }}
         run: echo "BUILD_ENV=test"
