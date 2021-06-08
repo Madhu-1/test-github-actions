@@ -1,16 +1,7 @@
 ---
 name: print github ref
 # yamllint disable-line rule:truthy
-on:
-  push:
-    # Sequence of patterns matched against refs/heads
-    branches:
-      # Push events on main branch
-      - master
-      # Push events to branches matching refs/heads/releasev*.*
-      - "release*"
-    tags:
-      - "v*"
+on: [push, pull_request]
 jobs:
   push:
     name: Print ref
@@ -18,6 +9,5 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
-      - name: Set build environment to test otherwise
-        if: ${{ contains(github.ref, 'master') }}
-        run: echo "BUILD_ENV=test"
+      - name: Check am i able to print the github token
+        run: GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} ./deploy.sh
