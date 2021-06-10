@@ -9,10 +9,11 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
-      - name: Check am i able to print the github token
+      - name: set the env
         run: |
           echo "QUAY_IO_USERNAME=${{ secrets.QUAY_USERNAME }}" >> $GITHUB_ENV
           echo "GITHUBB_TOKEN=${{ secrets.QUAY_PASSWORD }}" >> $GITHUB_ENV
           echo "GITHUB_USER=${{ secrets.QUAY_USERNAME }}" >> $GITHUB_ENV
           echo "GITHUB_EMAIL=test.example.com" >> $GITHUB_ENV
-          ./deploy.sh
+      - name: Do login
+        run: ./deploy.sh
