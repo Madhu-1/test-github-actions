@@ -10,4 +10,8 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
       - name: Check am i able to print the github token
-        run: QUAY_IO_USERNAME=${{ secrets.QUAY_USERNAME }} GITHUB_TOKEN=${{ secrets.QUAY_PASSWORD }} ./deploy.sh
+        run: |
+          echo "GITHUB_USER=${{ secrets.CEPH_CSI_BOT_NAME }}" >> $GITHUB_ENV
+          echo "GITHUB_EMAIL=${{ secrets.CEPH_CSI_BOT_EMAIL }}" >> $GITHUB_ENV
+          echo "GITHUB_TOKEN=${{ secrets.CEPH_CSI_BOT_TOKEN }}" >> $GITHUB_ENV
+          ./deploy.sh
