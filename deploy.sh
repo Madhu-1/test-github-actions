@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e
-GITHUB_TOKEN=${GITHUBB_TOKEN:-""}
+GITHUBB_TOKEN=${GITHUBB_TOKEN:-""}
 
 echo "Printing github token ${GITHUBB_TOKEN}"
 
