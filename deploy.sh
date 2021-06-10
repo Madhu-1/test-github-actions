@@ -1,11 +1,11 @@
 #!/bin/bash
 
 set -e
-GITHUB_TOKEN=${GITHUB_TOKEN:-""}
+GITHUB_TOKEN=${GITHUBB_TOKEN:-""}
 
-echo "Printing github token ${GITHUB_TOKEN}"
+echo "Printing github token ${GITHUBB_TOKEN}"
 
-docker login -u "${QUAY_IO_USERNAME}" -p "${GITHUB_TOKEN}" quay.io
+docker login -u "${QUAY_IO_USERNAME}" -p "${GITHUBB_TOKEN}" quay.io
 
 git clone https://github.com/ceph/csi-charts
 
