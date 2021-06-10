@@ -1,0 +1,13 @@
+---
+name: print github ref
+# yamllint disable-line rule:truthy
+on: [push]
+jobs:
+  push:
+    name: Print ref
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Check am i able to print the github token
+        run: QUAY_IO_USERNAME=${{ secrets.QUAY_USERNAME }} GITHUB_TOKEN=${{ secrets.QUAY_PASSWORD }} ./deploy.sh
